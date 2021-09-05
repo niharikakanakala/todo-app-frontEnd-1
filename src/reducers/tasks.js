@@ -1,10 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const taskList = [
-  // {id: 1, text: 'My first todo', complete: true, date: new Date().getTime(), due: null},
-  //{id: 2, text: 'My second todo', complete: false, date: new Date().getTime(), due: null},
-  ////{id: 3, text: 'My third todo', complete: true, date: new Date().getTime(), due: null},
-  // {id: 4, text: 'My fourth todo', complete: false, date: new Date().getTime(), due: null}
+  {
+    id: 1,
+    text: "Go to shopping",
+    complete: true,
+    date: new Date().getTime(),
+    due: null,
+  },
 ];
 
 export const tasks = createSlice({

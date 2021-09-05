@@ -1,15 +1,41 @@
-import "./App.css";
-import { useSelector } from "react-redux";
-import TodoList from "./components/TodoList/TodoList";
+import React, { useState } from "react";
+import { Provider } from "react-redux";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import styled from "styled-components";
 
-function App() {
-  const state = useSelector((state) => ({ ...state }));
-  console.log("state", state);
+import Header from "./components/Header";
+import Tasklist from "./components/Tasklist";
+import { tasks } from "./reducers/tasks";
+
+const reducer = combineReducers({ tasks: tasks.reducer });
+
+const store = configureStore({ reducer });
+
+export const App = () => {
+  const [completed, setCompleted] = useState(false);
+  const [uncompleted, setUncompleted] = useState(false);
+  const [all, setAll] = useState(true);
+
   return (
-    <div className="App">
-      <TodoList />
-    </div>
+    <Provider store={store}>
+      <Container>
+        <Header
+          completed={completed}
+          uncompleted={uncompleted}
+          all={all}
+          setCompleted={setCompleted}
+          setUncompleted={setUncompleted}
+          setAll={setAll}
+        />
+        <Tasklist completed={completed} uncompleted={uncompleted} all={all} />
+      </Container>
+    </Provider>
   );
-}
+};
 
-export default App;
+const Container = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
