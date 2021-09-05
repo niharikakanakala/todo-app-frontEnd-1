@@ -14,7 +14,7 @@ const Todo = ({ toggleTodo, task, completed, id, removeTodo, updateTodo }) => {
   return (
     <TransitionGroup className={completed ? "Todo completed" : "Todo"}>
       {isEditing ? (
-        <CSSTransition key="editing" timeout={500} classNames="form">
+        <CSSTransition key="editing" timeout={100} classNames="form">
           <form className="Todo-edit-form" onSubmit={handleUpdate}>
             <input
               type="text"
@@ -27,7 +27,7 @@ const Todo = ({ toggleTodo, task, completed, id, removeTodo, updateTodo }) => {
           </form>
         </CSSTransition>
       ) : (
-        <CSSTransition key="normal" timeout={500} classNames="task-text">
+        <CSSTransition key="normal" timeout={100} classNames="task-text">
           <li className="Todo-task" onClick={toggleTodo}>
             {task}
           </li>

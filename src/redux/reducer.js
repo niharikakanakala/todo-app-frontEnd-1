@@ -1,7 +1,7 @@
 import * as types from "./actionTypes";
 import { v4 as uuidv4 } from "uuid";
 const initialState = {
-  todos: [{ id: 1, task: "wake up", completed: false }],
+  todos: [{ id: 1, task: "wake up", date: Date.now(), completed: false }],
 };
 
 const todoReducer = (state = initialState, action) => {
@@ -10,6 +10,7 @@ const todoReducer = (state = initialState, action) => {
       const newTodo = {
         id: uuidv4(),
         task: action.payload,
+        date: Date.now(),
         completed: false,
       };
       const addedTodos = [...state.todos, newTodo];
