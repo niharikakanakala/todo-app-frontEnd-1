@@ -25,7 +25,7 @@ export const Task = ({ text, complete, task }) => {
         <Checkbox type="checkbox" checked={complete} onChange={check} />
         <CustomCheckbox checked={complete}></CustomCheckbox>
         <TaskTitle checked={complete}>{text}</TaskTitle>
-        <TimeStamp>{moment(task.date).format("MMM Do")}</TimeStamp>
+        <TimeStamp>{moment(task.TimeStamp).format("MMM Do")}</TimeStamp>
         <DueDate due={task.due}>
           {task.due ? `Due ${moment(task.due).fromNow()}` : " "}
         </DueDate>

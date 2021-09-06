@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+//import { API_BASE_URL } from "../constants/api";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import { Task } from "./Task";
@@ -10,6 +13,7 @@ import {
   TopInfo,
   AddTaskButton,
 } from "./StyledComponents";
+//import { createStore } from "redux";
 
 const Tasklist = ({ completed, uncompleted, all }) => {
   const listedtasks = useSelector((store) => store.tasks.items);
@@ -23,7 +27,11 @@ const Tasklist = ({ completed, uncompleted, all }) => {
   const showInput = () => {
     setAddTask(!addTask);
   };
-
+  // const showInpt = async () => {
+  //   const response = await instance.post("/todo", {
+  //     setAddTask(addTask)
+  //   });
+  // };
   return (
     <TasksContainer>
       <TopInfo>
