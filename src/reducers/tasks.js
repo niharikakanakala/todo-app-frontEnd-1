@@ -1,14 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const taskList = [
-  {
-    id: 1,
-    text: "Go to shopping",
-    complete: true,
-    date: new Date().getTime(),
-    due: null,
-  },
-];
+const taskList = [];
 
 export const tasks = createSlice({
   name: "tasks",

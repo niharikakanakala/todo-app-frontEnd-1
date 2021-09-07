@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
-import instance from "../constants/axios";
+import { API_BASE_URL } from "../constants/axios";
 
 import { tasks } from "../reducers/tasks";
 import {
@@ -13,17 +13,39 @@ import {
   DueButton,
   DueDateContainer,
 } from "./StyledComponents";
+import axios from "axios";
 
 export const NewTask = ({ addTask }) => {
   const dispatch = useDispatch();
   const [newTask, setNewTask] = useState("");
   const [startDate, setStartDate] = useState();
+  const [data, setData] = useState(null);
 
-  const onSubmit = (event) => {
-    event.preventDefault();
+  // const onSubmit = (event) => {
+  //   event.preventDefault();
+  //   dispatch(tasks.actions.addTask({ newTask, startDate }));
+  //   setNewTask("");
+  //   setStartDate(null);
+  // };
+  const createTodo = (e) => {
+    e.preventDefault();
     dispatch(tasks.actions.addTask({ newTask, startDate }));
     setNewTask("");
     setStartDate(null);
+    console.log(data);
+    const payload = {
+      task: newTask,
+    };
+    axios
+      .post(API_BASE_URL + "todo", payload)
+      .then((res) => {
+        setData(res.data);
+        setNewTask("");
+        setStartDate(null);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const ExampleCustomInput = ({ onClick }) => (
@@ -43,7 +65,7 @@ export const NewTask = ({ addTask }) => {
               placeholder="+ Add new task"
             />
 
-            <SubmitButton type="submit" onClick={onSubmit}>
+            <SubmitButton type="submit" onClick={createTodo}>
               +
             </SubmitButton>
           </Form>

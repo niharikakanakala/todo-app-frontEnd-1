@@ -27,11 +27,7 @@ const Tasklist = ({ completed, uncompleted, all }) => {
   const showInput = () => {
     setAddTask(!addTask);
   };
-  // const showInpt = async () => {
-  //   const response = await instance.post("/todo", {
-  //     setAddTask(addTask)
-  //   });
-  // };
+
   return (
     <TasksContainer>
       <TopInfo>
