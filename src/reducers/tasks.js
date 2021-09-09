@@ -1,7 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+// import { API_BASE_URL } from "../constants/api";
+// import axios from "axios";
+
+// const tdo = async () => {
+//   const response = await axios.get(API_BASE_URL + "todos");
+//   return response;
+// };
 
 const taskList = [];
-
+//this is the store
 export const tasks = createSlice({
   name: "tasks",
   initialState: {
@@ -18,6 +25,11 @@ export const tasks = createSlice({
         date: new Date().getTime(),
         due: startDate,
       });
+    },
+
+    setAll: (state, action) => {
+      const items = action.payload;
+      state.items = items;
     },
 
     clearTasks: (state) => {

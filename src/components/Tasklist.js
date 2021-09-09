@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //import { API_BASE_URL } from "../constants/api";
 
 import { useSelector, useDispatch } from "react-redux";
-
+import axios from "axios";
 import { Task } from "./Task";
 import { NewTask } from "./NewTask";
 import { tasks } from "../reducers/tasks";
+import { API_BASE_URL } from "../constants/axios";
 import {
   TasksContainer,
   ClearButton,
@@ -23,6 +24,17 @@ const Tasklist = ({ completed, uncompleted, all }) => {
     (task) => task.complete === false
   );
   const [addTask, setAddTask] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(API_BASE_URL + "todos")
+      .then((res) => {
+        dispatch(tasks.actions.setAll(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const showInput = () => {
     setAddTask(!addTask);
@@ -42,7 +54,7 @@ const Tasklist = ({ completed, uncompleted, all }) => {
         listedtasks.map((task) => {
           return (
             <Task
-              text={task.text}
+              text={task.task}
               key={task.id}
               complete={task.complete}
               task={task}
@@ -54,7 +66,7 @@ const Tasklist = ({ completed, uncompleted, all }) => {
         completedTasks.map((task) => {
           return (
             <Task
-              text={task.text}
+              text={task.task}
               key={task.id}
               complete={task.complete}
               task={task}
@@ -66,7 +78,7 @@ const Tasklist = ({ completed, uncompleted, all }) => {
         uncompletedTasks.map((task) => {
           return (
             <Task
-              text={task.text}
+              text={task.task}
               key={task.id}
               complete={task.complete}
               task={task}

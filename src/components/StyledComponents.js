@@ -58,7 +58,7 @@ export const RemoveButton = styled.button`
 export const TaskTitle = styled.p`
   margin: 0;
   margin-left: 35px;
-  color: ${(props) => (props.checked ? "#D1C4F6" : "#7F2AEC")};
+  color: ${(props) => (props.checked ? "#5B25F0" : "#7F2AEC")};
   text-decoration: ${(props) => (props.checked ? "line-through" : "none")};
   font-weight: bold;
 `;
@@ -66,7 +66,7 @@ export const TimeStamp = styled.p`
   position: absolute;
   bottom: 0;
   right: 10px;
-  color: #d1c4f6;
+  color: #5b25f0;
   font-size: 10px;
   text-align: right;
 `;
@@ -116,7 +116,7 @@ export const Input = styled.input`
   padding: 10px;
   font-size: 16px;
   &::placeholder {
-    color: #d1c4f6;
+    color: #5b25f0;
   }
 `;
 export const Form = styled.form`
